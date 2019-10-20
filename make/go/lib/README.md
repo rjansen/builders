@@ -1,9 +1,10 @@
-# go
-Golang usage samples
+# go library
+Golang library usage samples
 
 # dependencies
 - [Make](https://www.gnu.org/software/make/)
 - [Go](https://golang.org/)
+- [Gotestsum](https://github.com/gotestyourself/gotestsum)
 
 
 # install
@@ -11,12 +12,7 @@ Golang usage samples
 - Install Go
   - Standard [Go installation](https://golang.org/doc/install)
   - Gvm [Go installation](https://github.com/moovweb/gvm)
+- Install [Gotestsum](https://github.com/gotestyourself/gotestsum/releases)
 
 # tests
 - Comming soon ...
-
-# samples
-- [Library](./lib/README.md)
-- [Binary](./bin/README.md)
-- [Gqlgen](./gqlgen/README.md)
-- [Modules](./modules/README.md)
