@@ -1,5 +1,5 @@
-# go
-Golang usage samples
+# gotestsum
+Gotestsum installation and usage samples
 
 # dependencies
 - [Make](https://www.gnu.org/software/make/)
@@ -14,10 +14,3 @@ Golang usage samples
 
 # tests
 - Comming soon ...
-
-# samples
-- [Library](./lib/README.md)
-- [Binary](./bin/README.md)
-- [Gqlgen](./gqlgen/README.md)
-- [Modules](./modules/README.md)
-- [Gotestsum](./gotestsum/README.md)

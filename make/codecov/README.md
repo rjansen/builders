@@ -1,5 +1,5 @@
-# make
-Make usage samples
+# codecov
+Codecov installation and usage samples
 
 # dependencies
 - [Make](https://www.gnu.org/software/make/)
@@ -8,8 +8,5 @@ Make usage samples
 # install
 - Make are ship with many operational systems. See your system documentation for more information about how install make
 
-# samples
-- [Cloud SDK](gcloud/README.md)
-- [Go](go/README.md)
-- [Postgres](postgres/README.md)
-- [Codecov](codecov/README.md)
+# tests
+- Comming soon ...
