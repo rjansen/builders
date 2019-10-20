@@ -29,4 +29,4 @@ $(CODECOV): | $(CODECOV_FILE)
 .PHONY: codecov.push
 codecov.push: $(CODECOV)
 	@echo "$(NAME) codecov.push"
-	$(CODECOV) -f $(COVERAGE_FILE)$(if $(CODECOV_TOKEN), -t $(CODECOV_TOKEN),)
+	$(CODECOV) -f $(CODECOV_COVERAGE_FILE)$(if $(CODECOV_TOKEN), -t $(CODECOV_TOKEN),)
