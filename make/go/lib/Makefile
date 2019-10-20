@@ -1,4 +1,5 @@
 LIB                ?= sample
+ROOT_REPO          := github.com/path/$(NAME)
 LIB_PATH           := $(LIB)
 REPO               := $(ROOT_REPO)/$(LIB_PATH)
 BIN_DIR            := $(BASE_DIR)/$(LIB_PATH)
