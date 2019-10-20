@@ -8,9 +8,9 @@ TMP_DIR     := $(BASE_DIR)/tmp
 DOCKER_NAME := e-pedion/$(NAME)
 DOCKER_FILE := ./Dockerfile
 
-.PHONY: clean
-clean:
-	@echo "$(NAME)@$(BUILD) clean"
+.PHONY: clearcache
+clearcache:
+	@echo "$(NAME)@$(BUILD) clearcache"
 	-rm -Rf $(TMP_DIR)
 
 $(TMP_DIR):
