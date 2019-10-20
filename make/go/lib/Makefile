@@ -1,7 +1,7 @@
 GO_MODULE          := $(REPO)/$(NAME)
 GO_VERSION         := 1.13.1
 export GO111MODULE := on
-GO_PKGS            := $(shell go list ./...)
+GO_PKGS            := ./...
 GO_TEST_PKGS       := $(if $(GO_TEST_PKGS),$(addprefix $(GO_MODULE)/,$(GO_TEST_PKGS)),$(GO_PKGS))
 GO_TESTS           ?= .
 GO_TEST_VERBOSITY  ?= $(if $(DEBUG),standard-verbose,short-verbose)
@@ -11,9 +11,15 @@ GO_COVERAGE_HTML   := $(TMP_DIR)/$(subst /,_,$(NAME)).coverage.html
 .PHONY: go.clearcache
 go.clearcache:
 	@echo "$(NAME)@$(BUILD) go.clearcache"
+	-rm -f $(GO_COVERAGE_FILE)
+	-rm -f $(GO_COVERAGE_HTML)
+	-rm -rf vendor
+
+.PHONY: go.clearmodules
+go.clearmodules:
+	@echo "$(NAME)@$(BUILD) go.clearmodules"
 	-rm -Rf $(HOME)/.cache/go-build
 	-rm -Rf $(HOME)/gopath/pkg/mod
-	-rm -Rf *.coverage.*
 
 .PHONY: go.vendor
 go.vendor:
@@ -28,7 +34,7 @@ go.vet:
 .PHONY: go.lint
 go.lint:
 	@echo "$(NAME)@$(BUILD) go.lint"
-	golint $(GO_TEST_PKGS)
+	golint $(shell go list $(GO_TEST_PKGS))
 
 .PHONY: go.test
 go.test:
@@ -53,12 +59,11 @@ go.coverage: $(TMP_DIR)
 		-covermode=atomic -coverpkg=$(GO_PKGS) -coverprofile=$(GO_COVERAGE_FILE) $(GO_TEST_PKGS)
 
 .PHONY: go.coverage.text
-go.coverage.text: coverage
+go.coverage.text: go.coverage
 	@echo "$(NAME)@$(BUILD) go.coverage.text"
 	go tool cover -func=$(GO_COVERAGE_FILE)
 
 .PHONY: go.coverage.html
-go.coverage.html: coverage
+go.coverage.html: go.coverage
 	@echo "$(NAME)@$(BUILD) go.coverage.html"
 	go tool cover -html=$(GO_COVERAGE_FILE) -o $(GO_COVERAGE_HTML)
-	@open $(GO_COVERAGE_HTML) || google-chrome $(GO_COVERAGE_HTML) || google-chrome-stable $(GO_COVERAGE_HTML)

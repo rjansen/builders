@@ -1,21 +1,26 @@
 CODECOV_TMP_DIR    := $(TMP_DIR)/codecov
 CODECOV_NAME       := codecov
-CODECOV_FILE       := $(DEPS_DIR)/$(CODECOV_NAME)
+CODECOV_FILE       := $(CODECOV_TMP_DIR)/$(CODECOV_NAME)
 CODECOV_URL        := https://codecov.io/bash
 CODECOV_BIN        := codecov
 CODECOV            := $(or $(shell which $(CODECOV_BIN)),$(TOOLS_DIR)/$(CODECOV_BIN))
 
 .PHONY: codecov.clearcache
 codecov.clearcache:
-	@echo "$(NAME)@$(BUILD) clearcache"
+	@echo "$(NAME)@$(BUILD) codecov.clearcache"
 	-rm -Rf $(CODECOV_TMP_DIR)
 
 $(CODECOV_TMP_DIR):
 	mkdir -p $(CODECOV_TMP_DIR)
 
-.PHONY: codecov.setup
-codecov.setup: $(CODECOV)
-	@echo "$(NAME)@$(BUILD) codecov.setup $(CODECOV)"
+.PHONY: codecov.install
+codecov.install: $(CODECOV)
+	@echo "$(NAME)@$(BUILD) codecov.install $(CODECOV)"
+
+.PHONY: codecov.uninstall
+codecov.uninstall:
+	@echo "$(NAME)@$(BUILD) codecov.uninstall $(CODECOV)"
+	-rm -f $(CODECOV)
 
 $(CODECOV_FILE): | $(CODECOV_TMP_DIR)
 	@echo "$(NAME)@$(BUILD) $(CODECOV_FILE)"
